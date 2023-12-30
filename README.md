@@ -1,85 +1,26 @@
-# icp_rust_message_board_contract
+Tugas Sistem Manajemen Tugas Sederhana
 
-### Requirements
-* rustc 1.64 or higher
-```bash
-$ curl --proto '=https' --tlsv1.2 https://sh.rustup.rs -sSf | sh
-$ source "$HOME/.cargo/env"
-```
-* rust wasm32-unknown-unknown target
-```bash
-$ rustup target add wasm32-unknown-unknown
-```
-* candid-extractor
-```bash
-$ cargo install candid-extractor
-```
-* install `dfx`
-```bash
-$ DFX_VERSION=0.15.0 sh -ci "$(curl -fsSL https://sdk.dfinity.org/install.sh)"
-$ echo 'export PATH="$PATH:$HOME/bin"' >> "$HOME/.bashrc"
-$ source ~/.bashrc
-$ dfx start --background
-```
+Pendahuluan
+Submission ini merupakan implementasi sistem manajemen tugas sederhana menggunakan bahasa pemrograman Rust dan teknologi Internet Computer. Sistem ini memungkinkan pengguna untuk menambahkan, melihat, memperbarui, dan menghapus tugas.
 
-If you want to start working on your project right away, you might want to try the following commands:
+Struktur Program
+Program ini menggunakan struktur data Task yang mencakup informasi penting seperti judul, deskripsi, orang yang ditugaskan, waktu pembuatan, dan waktu pembaruan. Selain itu, terdapat fungsi-fungsi untuk menangani operasi-operasi dasar seperti penambahan, pembacaan, pembaruan, dan penghapusan tugas.
 
-```bash
-$ cd icp_rust_boilerplate/
-$ dfx help
-$ dfx canister --help
-```
+Fungsi Utama
+1. Menambahkan Tugas Baru
+Fungsi add_task memungkinkan pengguna untuk menambahkan tugas baru ke dalam sistem. Pengguna hanya perlu memberikan judul, deskripsi, dan opsi untuk orang yang ditugaskan.
 
-## Update dependencies
+2. Melihat Detail Tugas
+Fungsi get_task memungkinkan pengguna untuk melihat detail tugas berdasarkan ID. Jika tugas dengan ID yang diberikan tidak ditemukan, sistem memberikan pesan kesalahan.
 
-update the `dependencies` block in `/src/{canister_name}/Cargo.toml`:
-```
-[dependencies]
-candid = "0.9.9"
-ic-cdk = "0.11.1"
-serde = { version = "1", features = ["derive"] }
-serde_json = "1.0"
-ic-stable-structures = { git = "https://github.com/lwshang/stable-structures.git", branch = "lwshang/update_cdk"}
-```
+3. Memperbarui Tugas
+Fungsi update_task memungkinkan pengguna untuk memperbarui informasi tugas berdasarkan ID. Pengguna dapat memperbarui judul, deskripsi, dan orang yang ditugaskan.
 
-## did autogenerate
+4. Menghapus Tugas
+Fungsi delete_task memungkinkan pengguna untuk menghapus tugas berdasarkan ID. Jika tugas dengan ID yang diberikan tidak ditemukan, sistem memberikan pesan kesalahan.
 
-Add this script to the root directory of the project:
-```
-https://github.com/buildwithjuno/juno/blob/main/scripts/did.sh
-```
+Penggunaan Program
+Pengguna dapat menggunakan antarmuka yang disediakan untuk berinteraksi dengan sistem. Mereka dapat menambahkan tugas baru, melihat detail tugas, memperbarui informasi tugas, dan menghapus tugas yang sudah selesai.
 
-Update line 16 with the name of your canister:
-```
-https://github.com/buildwithjuno/juno/blob/main/scripts/did.sh#L16
-```
-
-After this run this script to generate Candid.
-Important note!
-
-You should run this script each time you modify/add/remove exported functions of the canister.
-Otherwise, you'll have to modify the candid file manually.
-
-Also, you can add package json with this content:
-```
-{
-    "scripts": {
-        "generate": "./did.sh && dfx generate",
-        "gen-deploy": "./did.sh && dfx generate && dfx deploy -y"
-      }
-}
-```
-
-and use commands `npm run generate` to generate candid or `npm run gen-deploy` to generate candid and to deploy a canister.
-
-## Running the project locally
-
-If you want to test your project locally, you can use the following commands:
-
-```bash
-# Starts the replica, running in the background
-$ dfx start --background
-
-# Deploys your canisters to the replica and generates your candid interface
-$ dfx deploy
-```
+Kesimpulan
+Submission ini adalah langkah awal dalam membangun sistem manajemen tugas menggunakan Rust dan teknologi Internet Computer. Program ini menyediakan fungsionalitas dasar dan dapat diperluas lebih lanjut untuk memenuhi kebutuhan manajemen tugas yang lebih kompleks.
