@@ -68,7 +68,7 @@ fn get_task(id: u64) -> Result<Task, Error> {
 }
 
 #[ic_cdk::update]
-fn add_task(task: TaskPayload) -> Option<Task> {
+fn add_task(task: TaskPayload) -> Result<Task, Error> {
     let id = ID_COUNTER
         .with(|counter| {
             let current_value = *counter.borrow().get();
@@ -84,8 +84,8 @@ fn add_task(task: TaskPayload) -> Option<Task> {
         updated_at: None,
     };
     do_insert(&task);
-    Some(task)
-}
+    Ok(task)
+ }
 
 #[ic_cdk::update]
 fn update_task(id: u64, payload: TaskPayload) -> Result<Task, Error> {
